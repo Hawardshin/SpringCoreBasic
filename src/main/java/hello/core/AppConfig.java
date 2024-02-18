@@ -27,10 +27,10 @@ public class AppConfig {
         return new MemoryMemberRepository();
     }
     @Bean
-    public OrderService orderService(){
+    public OrderService orderService(MemberRepository  memberRepository , DiscountPolicy
+        discountPolicy){
         System.out.println("call AppConfig.orderService");
-        return new OrderServiceImpl(
-            memberRepository(), discountPolicy());
+        return new OrderServiceImpl();
     }
     @Bean
     public DiscountPolicy discountPolicy(){
