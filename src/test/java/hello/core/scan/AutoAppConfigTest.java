@@ -23,4 +23,15 @@ public class AutoAppConfigTest {
 		MemberRepository memberRepository = bean.getMemberRepository();
 		System.out.println("memberRepository = " + memberRepository);
 	}
+
+	//필드 주입의 단점!
+	//이렇게 하면 순수 자바 테스트 코드에서 다른 객체를 넣고 테스트 하고 싶어도 할 수 있는 방법이 없다.
+	//이런 경우 Null Point Exception 발생한다.
+	// @Test
+	// void fieldInjectionTest(){
+	// 	OrderServiceImpl orderService = new OrderServiceImpl();
+	// 	orderService.createOrder(1L, "itemA", 10000);
+	// }
 }
+
+

@@ -13,12 +13,12 @@ public class OrderServiceTest {
     MemberService memberService;
     OrderService orderService;
 
-    // @BeforeEach
-    // public void beforeEach(){
-    //     AppConfig appConfig = new AppConfig();
-    //     memberService = appConfig.memberService();
-    //     orderService = appConfig.orderService();
-    // }
+    @BeforeEach
+    public void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+        orderService = appConfig.orderService(appConfig.memberRepository(), appConfig.discountPolicy());
+    }
     @Test
     void createOrder() {
         Long memberId = 1L;
