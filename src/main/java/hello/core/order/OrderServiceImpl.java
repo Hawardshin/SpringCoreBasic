@@ -12,11 +12,16 @@ import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 
 @Component
-@RequiredArgsConstructor
+// @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
      private final MemberRepository memberRepository;
      private final DiscountPolicy discountPolicy ;
 
+     @Autowired
+     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy){
+         this.memberRepository = memberRepository;
+         this.discountPolicy = rateDiscountPolicy;
+     }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
