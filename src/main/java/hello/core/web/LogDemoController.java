@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LogDemoController {
 	private final LogDemoService logDemoService;
-	private final ObjectProvider<MyLogger> myLoggerProvider;
+	private final MyLogger myLogger;
 	//지금 myLogger가 http scope라서 injection이 안됩니다.
 	//이걸 해결하려면 Provider를 사용해야합니다.
 
@@ -23,7 +23,7 @@ public class LogDemoController {
 	@RequestMapping("log-demo")
 	@ResponseBody
 	public String logDemo(HttpServletRequest request){
-		MyLogger myLogger = myLoggerProvider.getObject();
+		// MyLogger myLogger = myLoggerProvider.getObject();
 		String requestURL = request.getRequestURL().toString();
 		myLogger.setRequestURL(requestURL);
 
