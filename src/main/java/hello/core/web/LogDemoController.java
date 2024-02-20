@@ -1,5 +1,6 @@
 package hello.core.web;
 
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LogDemoController {
 	private final LogDemoService logDemoService;
-	private final MyLogger myLogger;
+	private final ObjectProvider<MyLogger> myLoggerProvider;
 	//지금 myLogger가 http scope라서 injection이 안됩니다.
 	//이걸 해결하려면 Provider를 사용해야합니다.
 
@@ -22,6 +23,7 @@ public class LogDemoController {
 	@RequestMapping("log-demo")
 	@ResponseBody
 	public String logDemo(HttpServletRequest request){
+		MyLogger myLogger = myLoggerProvider.getObject();
 		String requestURL = request.getRequestURL().toString();
 		myLogger.setRequestURL(requestURL);
 
