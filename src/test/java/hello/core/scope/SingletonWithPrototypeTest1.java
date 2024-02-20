@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Scope;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.inject.Provider;
 
 public class SingletonWithPrototypeTest1 {
 	@Test
@@ -48,12 +49,12 @@ public class SingletonWithPrototypeTest1 {
 
 
 		@Autowired
-		private ObjectProvider<PrototypeBean> prototypeBeanProvider;
+		private Provider<PrototypeBean> prototypeBeanProvider;
 
 
 		public int logic(){
 
-			PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
+			PrototypeBean prototypeBean = prototypeBeanProvider.get();
 			prototypeBean.addCount();
 			return prototypeBean.getCount();
 		}
